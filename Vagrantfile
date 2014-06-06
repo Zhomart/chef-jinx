@@ -106,12 +106,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # If you have your own Chef Server, use the appropriate URL, which may be
   # HTTP instead of HTTPS depending on your configuration. Also change the
   # validation key to validation.pem.
-  #
-  # config.vm.provision "chef_client" do |chef|
-  #   chef.chef_server_url = "https://api.opscode.com/organizations/ORGNAME"
-  #   chef.validation_key_path = "ORGNAME-validator.pem"
-  # end
-  #
+
+  config.vm.provision "chef_client" do |chef|
+    chef.chef_server_url = "https://api.opscode.com/organizations/jinx"
+    chef.validation_key_path = ".chef/jinx-validator.pem"
+    chef.validation_client_name = 'jinx-validator'
+    chef.node_name = 'my_test_vm'
+  end
+
   # If you're using the Opscode platform, your validator client is
   # ORGNAME-validator, replacing ORGNAME with your organization name.
   #
